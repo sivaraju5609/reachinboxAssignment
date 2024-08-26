@@ -1,0 +1,63 @@
+// Mock data for the email contents
+const emails = {
+    beto: {
+      subject: "I've tried it and...",
+      date: "Nov 7, 2023",
+      replyTo: "Beto@gmail.com",
+      from: "Beto@gmail.com",
+      body: "I tried the product and it works great!"
+    },
+    ramo: {
+      subject: "Are you out of your mind?",
+      date: "Nov 9, 2023",
+      replyTo: "ramo@gmail.com",
+      from: "ramo@gmail.com",
+      body: "What were you thinking?"
+    },
+    shiva: {
+      subject: "Need to talk, call to +91 63034 7622",
+      date: "Dec 7, 2023",
+      replyTo: "shiva@gmail.com",
+      from: "shiva@gmail.com",
+      body: "Please call me tomorrow at this number."
+    },
+    tabu: {
+      subject: "You are selected...",
+      date: "Nov 9, 2023",
+      replyTo: "p.tabu@gmail.com",
+      from: "p.tabu@gmail.com",
+      body: "Congratulations, you are selected for the next round."
+    }
+  };
+  
+  // Select email items and preview elements
+  const emailItems = document.querySelectorAll('.email-item');
+  const emailSubject = document.querySelector('.email-header h3');
+  const emailDate = document.querySelector('.email-header .email-date');
+  const replyToElement = document.querySelector('.reply-to');
+  const fromElement = document.querySelector('.from');
+  const replyBox = document.querySelector('.reply-box');
+  
+  // Event listener to display email content on click
+  emailItems.forEach(item => {
+    item.addEventListener('click', function() {
+      emailItems.forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+  
+      const emailId = item.getAttribute('data-email');
+      const emailData = emails[emailId];
+  
+      emailSubject.textContent = emailData.subject;
+      emailDate.textContent = emailData.date;
+      replyToElement.textContent = emailData.replyTo;
+      fromElement.textContent = emailData.from;
+      replyBox.value = emailData.body;
+    });
+  });
+  
+  // Simulate sending the email
+  const sendButton = document.querySelector('.email-actions .btn');
+  sendButton.addEventListener('click', function() {
+    alert('Email sent!');
+  });
+  
